@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ recipe.name }}</title>
+</head>
+<body>
+    <h1>{{ recipe.name }}</h1>
+    <p><strong>Category:</strong> {{ recipe.category }}</p>
+    <p><strong>Description:</strong> {{ recipe.description }}</p>
+    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+    <p><strong>Process:</strong> {{ recipe.process }}</p>
+    {% if recipe.picture %}
+        <img src="{{ recipe.picture.url }}" alt="{{ recipe.name }}">
+    {% endif %}
+    <a href="/{{ recipe.id }}/edit/">Edit</a>
+    <form method="post" action="/{{ recipe.id }}/delete/">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="/">Back to List</a>
+</body>
+</html>
